@@ -16,12 +16,55 @@ cd google-style-skills
 ./install.sh
 ```
 
-The installer symlinks each skill into `~/.claude/skills`, so the installed
-copy tracks the repository. To install into one project instead, use
-`./install.sh --project /path/to/repo`. To see what's linked, use
-`./install.sh --list`. To remove the links, use `./install.sh --uninstall`.
+`./install.sh` with no arguments lists the ten skills and asks which ones you
+want. Enter numbers, or a preset name, or press Return to leave things as they
+are.
 
-Start a new session afterwards, then run `/google-style`.
+Enabling a skill symlinks it into `~/.claude/skills`, so what you have
+installed tracks this repository. Start a new session for a change to take
+effect, then run `/google-style`.
+
+### Pick what you'll use
+
+Every enabled skill puts its name and a one-line description into every
+session's context, whether or not you invoke it. Ten of them is a real cost
+for someone who only wanted the writing rules. So enable a few and add more
+when you reach for them.
+
+| Preset | Enables | Choose it when |
+| --- | --- | --- |
+| `core` | `google-style`, `google-style-review` | You want good documentation prose and a way to audit a draft. Start here. |
+| `docs` | All eight writing skills | You write documentation often enough to want the detailed rules on hand. |
+| `review` | `google-code-review`, `google-cl-author` | You want Google's code review norms and nothing about writing. |
+| `all` | Everything | You're trying them out. |
+| `none` | Nothing | You're done with them. |
+
+```bash
+./install.sh preset core              # apply a preset
+./install.sh enable google-style-code # add one skill
+./install.sh disable google-cl-author # drop one skill
+./install.sh status                   # what's enabled right now
+```
+
+`core` is the recommendation because `google-style` is the whole guide
+compressed into one page — it answers most questions on its own and carries
+the word list. The six detailed writing skills are for the questions it sends
+you to: a hyphenation call, a table's punctuation, how to document a flag.
+Enable those individually when you find yourself asking.
+
+Enabling any writing skill also enables `google-style`, because the others
+read its word list.
+
+### Install into one project
+
+```bash
+./install.sh --project /path/to/repo preset docs
+```
+
+That writes symlinks into `/path/to/repo/.claude/skills` instead of your home
+directory, so the skills load for that repository and nowhere else. Add
+`.claude/skills/google-*` to the project's `.gitignore` unless you want your
+teammates to get them too.
 
 ## The skills
 

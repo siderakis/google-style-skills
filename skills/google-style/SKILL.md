@@ -208,6 +208,11 @@ unless you know the license permits it.
 | Reviewing someone's code | `google-code-review` |
 | Getting your own change reviewed | `google-cl-author` |
 
+These skills are installed separately, so a row here may name one this user
+doesn't have. If a skill isn't available, answer from this page and say which
+rule you're working from; the source pages under https://developers.google.com/style
+are the fallback, and `references/word-list.md` below is always present.
+
 ## Word list
 
 `references/word-list.md` holds all 597 entries, alphabetized, with Google's
