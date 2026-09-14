@@ -7,8 +7,10 @@
 #   ./install.sh status              show what's enabled
 #   ./install.sh enable NAME...      enable one or more skills
 #   ./install.sh disable NAME...     disable one or more skills
+#   ./install.sh set NAME...         enable exactly these and disable the rest
 #   ./install.sh preset NAME         core | docs | review | all | none
 #   ./install.sh --project DIR CMD   act on DIR/.claude/skills, not ~/.claude/skills
+#   ./install.sh --target DIR CMD    act on DIR itself as the skills directory
 #
 # Presets:
 #   core     google-style and google-style-review — the recommended start
@@ -27,7 +29,7 @@ TARGET="$HOME/.claude/skills"
 [ -d "$SRC" ] || { echo "no skills directory at $SRC" >&2; exit 1; }
 [ -f "$MANIFEST" ] || { echo "no manifest at $MANIFEST" >&2; exit 1; }
 
-usage() { sed -n '2,19p' "${BASH_SOURCE[0]}" | sed 's/^# \{0,1\}//'; }
+usage() { sed -n '2,20p' "${BASH_SOURCE[0]}" | sed 's/^# \{0,1\}//'; }
 
 # --- manifest ---------------------------------------------------------------
 
@@ -176,7 +178,9 @@ status() {
   echo "$count of $(all_names | wc -l | tr -d ' ') enabled."
 }
 
-pick() {
+# The good picker is pick.ts, which needs bun and a terminal. This is the
+# fallback for everyone else.
+pick_plain() {
   local n i=0 names=() sel choice wanted=""
   for n in $(all_names); do names+=("$n"); done
 
@@ -218,6 +222,14 @@ pick() {
   apply_selection "$wanted"
 }
 
+pick() {
+  if [ -t 0 ] && [ -t 1 ] && command -v bun >/dev/null 2>&1 && [ -f "$REPO/pick.ts" ]; then
+    bun run "$REPO/pick.ts" "$REPO" "$TARGET" && return 0
+    echo "Falling back to the plain picker." >&2
+  fi
+  pick_plain
+}
+
 # --- arguments --------------------------------------------------------------
 
 while [ $# -gt 0 ] && [ "${1#--}" != "$1" ]; do
@@ -226,6 +238,12 @@ while [ $# -gt 0 ] && [ "${1#--}" != "$1" ]; do
       [ $# -ge 2 ] || { echo "--project needs a directory" >&2; exit 2; }
       [ -d "$2" ] || { echo "no such directory: $2" >&2; exit 2; }
       TARGET="$(cd "$2" && pwd)/.claude/skills"
+      shift 2
+      ;;
+    --target)
+      [ $# -ge 2 ] || { echo "--target needs a directory" >&2; exit 2; }
+      mkdir -p "$2"
+      TARGET="$(cd "$2" && pwd)"
       shift 2
       ;;
     -h|--help) usage; exit 0 ;;
@@ -239,6 +257,10 @@ CMD="${1:-pick}"
 case "$CMD" in
   pick)   pick ;;
   status|list) status ;;
+  set)
+    validate_names "$@" || exit 2
+    apply_selection "$*"
+    ;;
   enable)
     [ $# -gt 0 ] || { echo "enable needs at least one skill name" >&2; exit 2; }
     validate_names "$@" || exit 2

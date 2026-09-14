@@ -1,18 +1,19 @@
-# Skill catalog, read by install.sh for the picker and the presets.
+# Skill catalog, read by install.sh and pick.ts for the picker and the presets.
 # Columns: name <TAB> group <TAB> presets <TAB> one-line blurb
 #
-# The blurb here is for a person choosing what to install. The `description`
-# in each SKILL.md is a different thing: it's what the agent matches against
-# to decide when to load the skill. Don't merge them.
+# The blurb here is for a person choosing what to install, and it has to fit
+# one line of an 80-column terminal — keep it under about 40 characters. The
+# `description` in each SKILL.md is a different thing: it's what the agent
+# matches against to decide when to load the skill. Don't merge them.
 #
-# presets: comma-separated. `core` is what install.sh recommends by default.
-google-style	Writing	core,docs,all	The whole style guide compressed to one page, plus the 597-entry word list. Start here.
-google-style-review	Writing	core,docs,all	Audits a doc you already have and reports findings ranked by what they cost the reader.
-google-style-grammar	Writing	docs,all	Active voice, tense, person, capitalization, abbreviations, plurals, possessives.
-google-style-punctuation	Writing	docs,all	Serial commas, em dashes, hyphens and compounds, colons, quotes, slashes.
-google-style-structure	Writing	docs,all	Headings, lists, tables, procedures, notices, link text.
-google-style-formatting	Writing	docs,all	Numbers, dates, units, math, images and alt text, bold vs italic vs code font.
-google-style-code	Writing	docs,all	Code font, samples, CLI syntax, placeholders, UI elements, API reference, example data.
-google-style-inclusive	Writing	docs,all	Accessibility and inclusive language, including terms embedded in code.
-google-code-review	Review	review,all	Reviewing someone else's change: the standard, what to look for, speed, comments, pushback.
-google-cl-author	Review	review,all	Getting your own change reviewed: small changes, splitting, descriptions, taking feedback.
+# presets: comma-separated. `core` is what the picker recommends.
+google-style	Writing	core,docs,all	the guide on one page + the word list
+google-style-review	Writing	core,docs,all	audit a draft, findings ranked
+google-style-grammar	Writing	docs,all	voice, tense, person, capitalization
+google-style-punctuation	Writing	docs,all	commas, dashes, hyphens, quotes
+google-style-structure	Writing	docs,all	headings, lists, tables, procedures
+google-style-formatting	Writing	docs,all	numbers, dates, units, images, alt text
+google-style-code	Writing	docs,all	code font, CLI syntax, placeholders, UI
+google-style-inclusive	Writing	docs,all	accessibility and inclusive language
+google-code-review	Review	review,all	reviewing someone else's change
+google-cl-author	Review	review,all	small changes, descriptions, feedback

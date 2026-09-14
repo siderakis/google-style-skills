@@ -16,13 +16,42 @@ cd google-style-skills
 ./install.sh
 ```
 
-`./install.sh` with no arguments lists the ten skills and asks which ones you
-want. Enter numbers, or a preset name, or press Return to leave things as they
-are.
+`./install.sh` with no arguments opens a picker:
+
+```
+  Google style skills
+  Each enabled skill costs a little context in every session.
+
+  WRITING
+  › [x] google-style              the guide on one page + the word list
+    [x] google-style-review       audit a draft, findings ranked
+    [ ] google-style-grammar      voice, tense, person, capitalization
+    [ ] google-style-punctuation  commas, dashes, hyphens, quotes
+    [ ] google-style-structure    headings, lists, tables, procedures
+    [ ] google-style-formatting   numbers, dates, units, images, alt text
+    [ ] google-style-code         code font, CLI syntax, placeholders, UI
+    [ ] google-style-inclusive    accessibility and inclusive language
+  REVIEW
+    [ ] google-code-review        reviewing someone else's change
+    [ ] google-cl-author          small changes, descriptions, feedback
+
+  2 of 10 enabled
+
+  ↑↓ move   space toggle   enter apply   q cancel
+  presets: c core   d docs   r review   a all   n none
+```
+
+Arrow keys move, space toggles, a preset letter sets the whole list at once,
+and enter applies. The boxes show what you have installed now, so you're
+editing a state rather than starting from nothing.
 
 Enabling a skill symlinks it into `~/.claude/skills`, so what you have
 installed tracks this repository. Start a new session for a change to take
 effect, then run `/google-style`.
+
+The picker needs [bun](https://bun.sh) and a terminal. Without either,
+`./install.sh` prints the same list and reads a line of numbers instead, and
+the commands below work anywhere.
 
 ### Pick what you'll use
 
@@ -43,6 +72,7 @@ when you reach for them.
 ./install.sh preset core              # apply a preset
 ./install.sh enable google-style-code # add one skill
 ./install.sh disable google-cl-author # drop one skill
+./install.sh set google-style         # enable exactly this, disable the rest
 ./install.sh status                   # what's enabled right now
 ```
 
