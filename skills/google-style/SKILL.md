@@ -207,6 +207,7 @@ unless you know the license permits it.
 | Auditing an existing document against all of the above | `google-style-review` |
 | Reviewing someone's code | `google-code-review` |
 | Getting your own change reviewed | `google-cl-author` |
+| Structuring a design doc | `google-design-doc` |
 
 These skills are installed separately, so a row here may name one this user
 doesn't have. If a skill isn't available, answer from this page and say which

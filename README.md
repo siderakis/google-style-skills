@@ -1,8 +1,9 @@
 # Google style skills
 
-Ten [Claude Code](https://claude.com/claude-code) skills that carry Google's
-developer documentation style guide and Google's code review practices, so an
-agent can apply them without fetching a web page mid-task.
+Eleven [Claude Code](https://claude.com/claude-code) skills that carry Google's
+developer documentation style guide, Google's code review practices and the
+structure of a Google design doc, so an agent can apply them without fetching
+a web page mid-task.
 
 Each skill holds the rules themselves — the wording, the thresholds, and
 Google's own Recommended / Not recommended example pairs — organized by the
@@ -34,8 +35,10 @@ cd google-style-skills
   REVIEW
     [ ] google-code-review        reviewing someone else's change
     [ ] google-cl-author          small changes, descriptions, feedback
+  DESIGN
+    [ ] google-design-doc         structure for a design doc
 
-  2 of 10 enabled
+  2 of 11 enabled
 
   ↑↓ move   space toggle   enter apply   q cancel
   presets: c core   d docs   r review   a all   n none
@@ -56,7 +59,7 @@ the commands below work anywhere.
 ### Pick what you'll use
 
 Every enabled skill puts its name and a one-line description into every
-session's context, whether or not you invoke it. Ten of them is a real cost
+session's context, whether or not you invoke it. Eleven of them is a real cost
 for someone who only wanted the writing rules. So enable a few and add more
 when you reach for them.
 
@@ -127,12 +130,20 @@ grep -A4 -i '^\*\*whitelist' ~/.claude/skills/google-style/references/word-list.
 | `google-code-review` | Reviewing someone else's change: the standard (approve once it improves code health, not once it's perfect), what to look for, navigating a large change, review speed, writing comments that land, and handling pushback. |
 | `google-cl-author` | Getting your own change reviewed: writing small self-contained changes, four ways to split a large one, writing a description that says what changed and why, and handling reviewer comments. |
 
+### Design docs
+
+| Skill | Covers |
+| --- | --- |
+| `google-design-doc` | Writing a design doc in the structure Google engineers use: context and scope, goals and non-goals, overview, detailed design, alternatives considered, cross-cutting concerns and open questions. Includes a fill-in template, the 1–3 page mini design doc, and when a design doc is the wrong tool. |
+
 ## How it was built
 
 The style skills were written from the guide's own pages, fetched and read in
 full rather than recalled. The code review skills were written from the
 [google/eng-practices](https://github.com/google/eng-practices) repository,
-read in full.
+read in full. The design doc skill was written from Malte Ubl's
+[Design Docs at Google](https://www.industrialempathy.com/posts/design-docs-at-google/),
+read in full and rewritten rather than copied.
 
 Two things were deliberately preserved. Google's example pairs are quoted as
 written, because a rule stated without its example is a rule an agent

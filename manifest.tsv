@@ -17,3 +17,4 @@ google-style-code	Writing	docs,all	code font, CLI syntax, placeholders, UI
 google-style-inclusive	Writing	docs,all	accessibility and inclusive language
 google-code-review	Review	review,all	reviewing someone else's change
 google-cl-author	Review	review,all	small changes, descriptions, feedback
+google-design-doc	Design	all	structure for a design doc

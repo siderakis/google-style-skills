@@ -1,8 +1,9 @@
 # Attribution
 
-The skills in this repository are derived from two of Google's published
+Most skills in this repository are derived from two of Google's published
 guides. Both are Creative Commons licensed, and both are credited here as
-those licenses require.
+those licenses require. One skill describes Google's design doc practice from
+a former Google engineer's account of it, credited below.
 
 ## Google developer documentation style guide
 
@@ -40,6 +41,17 @@ comments).
 Google writes _CL_ for "changelist"; the skills note that this reads as commit,
 pull request, or branch elsewhere. Section structure and the quoted examples
 are Google's.
+
+## Design Docs at Google
+
+Source: Malte Ubl, "Design Docs at Google",
+<https://www.industrialempathy.com/posts/design-docs-at-google/>
+Retrieved: 2026-11-10
+
+Described in: `skills/google-design-doc`. The section names and the guidance
+on what each section holds follow that post. The text is new writing, not a
+copy, so this skill is offered under this repository's CC BY 4.0 terms; the
+post itself is not under a Creative Commons license.
 
 ## Relationship to Google
 
